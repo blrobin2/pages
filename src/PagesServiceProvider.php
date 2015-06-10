@@ -17,11 +17,12 @@ class PagesServiceProvider extends ServiceProvider {
 
 		$this->loadViewsFrom(__DIR__.'/views/', 'pages');
 
-		$this->publishes([__DIR__.'/views/layouts/' => 'resources/views/vendor/'], 'layouts');
+		$this->publishes([__DIR__.'/views/layouts/' => 'resources/views/layouts/'], 'layouts');
+		$this->published([__DIR__.'/views/partials/' => 'resources/views/partials'], 'partials');
 
 		// For Laravel 5.1, which doesn't include this by default anymore.
 		$this->publishes([__DIR__.'/views/auth/' => 'resources/views/auth'], 'auth');
-		$this->publishes([__DIR__.'/views/app.php' => 'resources/views/'], 'app');
+		$this->publishes([__DIR__.'/views/app/' => 'resources/views/'], 'app');
 	}
  
 	/**
@@ -43,5 +44,4 @@ class PagesServiceProvider extends ServiceProvider {
 		$loader = AliasLoader::getInstance();
 		$loader->alias('Form', 'Collective\Html\FormFacade');
 	}
- 
 }

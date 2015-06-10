@@ -19,7 +19,7 @@ Then, include the service provider within `config/app.php`.
 
 ```php
 'providers' => [
-    'BruceCms\Pages\PagesServiceProvider'
+    BruceCms\Pages\PagesServiceProvider::class
 ];
 ```
 

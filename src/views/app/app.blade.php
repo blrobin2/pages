@@ -17,6 +17,10 @@
 	<![endif]-->
 </head>
 <body>
+	@if(\Auth::user())
+		@include('partials/nav-admin')
+	@endif
+
     <div class="container">
         @include('pages::partials/nav')
 
