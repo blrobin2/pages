@@ -4,10 +4,8 @@
 
 First, pull in the package through Composer.
 
-```js
-"require": {
-    "brucecms/pages": "~0.1"
-}
+```bash
+composer require brucecms/pages
 ```
 
 Then, if using Laravel 5, include the service provider within `config/app.php`.
