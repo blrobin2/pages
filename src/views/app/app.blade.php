@@ -22,15 +22,17 @@
 	@endif
 
     <div class="container">
-        @include('pages::partials/nav')
-
         <div class="row">
-            <div class="col-md-12">
-                @yield('content')
-            </div>
-        </div>
+        	@include('pages::partials/nav')
+		</div><!--row-->
+		
+		<div class="row">
+			@include('flash::message')
+		</div>
 
-    </div>
+        @yield('content')
+
+    </div><!--container-->
 
 
 	<!-- Scripts -->
