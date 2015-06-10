@@ -1,4 +1,4 @@
-# Itty, bitty CMS
+# Itty, bitty CMS for Laravel
 
 ## Installation
 
@@ -117,7 +117,28 @@ If you are using the default `app.blade.php` and have not done anything to it, i
 </html>
 ```
 
+You will need to get your [database configuration](http://laravel.com/docs/5.0/database) set and run:
+
+```bash
+php artisan migrate
+```
+
+Then, you'll be ready to go!
 
 ## Usage
 
-Coming soon!
+In this package, everything except the pages themselves are hidden behind the [Auth middleware](http://laravel.com/docs/5.0/authentication#protecting-routes), you will need to register a new administrator. By default, the `auth/register` route is open, so I would create it that way.
+
+### Routes
+
+#### Page Manager
+The Page Manager is under the `pages` route. By default, you have no pages except the home page, which is not really a page because it's usually a special case. More on that later. If you want to change the sorting of pages in the navigation, you can simply drag the rows to stack in the order that you wish and click 'Sort Pages'.
+
+#### Create a New Page
+By either clicking on the link on the `pages` route, or by going to `pages/create`, you can create a new page. Each field is fairly self-explanatory, but for thoroughness's sake:
+* Title - The title of the page. This is also how the link will display in the navigation.
+* Link - The route that will be used to get to the page. As it notes, you don't want to put in a sentence or spaces between words. By convention, it recommends uses a dash.
+* Body - The actual content of the page. Pages uses [TinyMCE](http://www.tinymce.com/) as it's fairly lightweight, and does all the things most clients and end-users would need to do. A future upgrade may include a file manger.
+* Hidden from Navigation? - If you want to create a page, but you don't want it to show up in the navigation.
+
+When the content is to your satisfaction, click 'Create Page'. It's that easy.

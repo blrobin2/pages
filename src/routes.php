@@ -19,6 +19,10 @@ Route::get('/', function(){
     return view('layouts.home');
 });
 
+Route::get('/home', function(){
+    return view('layouts.home');
+});
+
 
 /** View a single page (the heart of the CMS) */
 Route::get('{pages}', 'BruceCms\Pages\PagesController@show');
