@@ -1,5 +1,12 @@
 # Itty, bitty CMS for Laravel
 
+This package is currently under development, working to be as cleanly compatible with Laravel 5.1 as possible. I would not recommend using it until
+
+## Prerequisites
+
+* PHP >= 5.5.0
+* Laravel >= 5.1 
+
 ## Installation
 
 First, pull in the package through Composer.
@@ -8,7 +15,7 @@ First, pull in the package through Composer.
 composer require brucecms/pages
 ```
 
-Then, if using Laravel 5, include the service provider within `config/app.php`.
+Then, include the service provider within `config/app.php`.
 
 ```php
 'providers' => [

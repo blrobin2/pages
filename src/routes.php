@@ -4,8 +4,8 @@
 * Authentication - Hidden away in Laravel 5.1
 */
 Route::controllers([
-    'auth' => 'Auth\AuthController',
-    'password' => 'Auth\PasswordController',
+    'auth' => 'App\Http\Controllers\Auth\AuthController',
+    'password' => 'App\Http\Controllers\Auth\PasswordController',
 ]);
 
 /**
