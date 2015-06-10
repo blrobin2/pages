@@ -89,12 +89,12 @@ class PagesController extends Controller
 	/**
 	 * Display the specified page.
 	 *
-	 * @param  int  $id
+	 * @param  string $link
 	 * @return Response
 	*/
-	public function show($id)
+	public function show($link)
 	{
-		$page = Page::findOrFail($id);
+		$page = Page::where('link', $link)->firstOrFail();
 
 		return view('pages::show', compact('page'));
 	}
