@@ -54,7 +54,7 @@ class PagesController extends Controller
     {
         $sortOrder = explode(',', $request->get('order'));
 
-        for($i = 1; $i < sizeof($sortOrder); $i++) {
+        for($i = 0; $i < sizeof($sortOrder); $i++) {
             $page = Page::find($sortOrder[$i]);
             $page->sort = $i;
             $page->save();
