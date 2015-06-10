@@ -23,7 +23,7 @@ class ViewComposerServiceProvider extends ServiceProvider {
 	{
 		\View::composer('pages::partials/nav', function($view)
         {
-            $view->with('pages', Page::orderBy('sort')->get());
+            $view->with('pages', Page::orderBy('sort')->unhidden()->get());
         });
 	}
 

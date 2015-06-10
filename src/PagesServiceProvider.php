@@ -16,6 +16,12 @@ class PagesServiceProvider extends ServiceProvider {
 		$this->publishes([__DIR__.'/requests/' => 'app/Http/Requests/'], 'request');
 
 		$this->loadViewsFrom(__DIR__.'/views/', 'pages');
+
+		$this->publishes([__DIR__.'/views/layouts/' => 'resources/views/vendor/'], 'layouts');
+
+		// For Laravel 5.1, which doesn't include this by default anymore.
+		$this->publishes([__DIR__.'/views/auth/' => 'resources/views/auth'], 'auth');
+		$this->publishes([__DIR__.'/views/app.php' => 'resources/views/'], 'app');
 	}
  
 	/**

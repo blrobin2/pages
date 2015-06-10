@@ -1,4 +1,4 @@
-@extends('layouts.home')
+@extends('pages::layouts.home')
 
 @section('header-styles')
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css">

@@ -1,6 +1,14 @@
 <?php
 
 /**
+* Authentication - Hidden away in Laravel 5.1
+*/
+Route::controllers([
+    'auth' => 'Auth\AuthController',
+    'password' => 'Auth\PasswordController',
+]);
+
+/**
  * Page Content Manager
  */
 Route::get('pages', 'BruceCms\Pages\PagesController@index');
