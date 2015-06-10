@@ -41,7 +41,7 @@ Then, you'll be ready to go!
 
 ## Usage
 
-In this package, everything except the pages themselves are hidden behind the [Auth middleware](http://laravel.com/docs/5.1/authentication#protecting-routes), you will need to register a new administrator. By default, the `auth/register` route is open, so I would create it that way.
+In this package, everything except the pages themselves are hidden behind the [Auth middleware](http://laravel.com/docs/5.1/authentication#protecting-routes), so you will need to register a new administrator. We provide a view for `auth/register` by default, so I would create one that way.
 
 ### Routes
 
@@ -66,3 +66,7 @@ To delete a page, click the 'Delete' button from the Page Manager. A confirmatio
 
 #### View a page
 To view a page, just go to the link you set for it. You can also get to it from the navigation links (it would be pretty useless if you couldn't, huh?)
+
+### Flash
+
+This package utilzes [Jeffrey Way's Flash Message](https://github.com/laracasts/flash) package, because we like it. Because we pull it in, you don't have to, and you can use it anywhere in your application that you would like to. Please refer to the github page for documentation.

@@ -43,5 +43,9 @@ class PagesServiceProvider extends ServiceProvider {
 		$this->app->register('Collective\Html\HtmlServiceProvider');
 		$loader = AliasLoader::getInstance();
 		$loader->alias('Form', 'Collective\Html\FormFacade');
+
+		// Flash dependencies
+		$this->app->register('Laracasts\Flash\FlashServiceProvider');
+		$loader->alias('Flash', 'Laracasts\Flash\Flash');
 	}
 }

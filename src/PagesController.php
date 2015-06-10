@@ -4,6 +4,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\PageRequest;
 use Illuminate\Http\Request;
 
+use Flash;
+
 class PagesController extends Controller
 {
     /**
@@ -60,6 +62,8 @@ class PagesController extends Controller
             $page->save();
         }
 
+		Flash::message('Navigation successfully sorted!');
+
         return redirect()->back();
     }
 
@@ -82,6 +86,8 @@ class PagesController extends Controller
 	public function store(PageRequest $request)
 	{
 		Page::create($request->all());
+
+		Flash::message('Page successfully created!');
 
         return redirect('pages');
 	}
@@ -125,6 +131,8 @@ class PagesController extends Controller
 
 		$page->update($request->all());
 
+		Flash::message('Page successfully updated!');
+
         return redirect('pages');
 	}
 
@@ -139,6 +147,8 @@ class PagesController extends Controller
 		$page = Page::where('link', $link)->firstOrFail();
 
 		$page->delete();
+
+		Flash::message('Page successfully deleted!');
 
         return redirect('pages');
 	}

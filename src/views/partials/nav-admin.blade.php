@@ -25,7 +25,6 @@
 							<ul class="dropdown-menu" role="menu">
 								<li>{!! link_to_action('\BruceCms\Pages\PagesController@create', 'Create a New Page') !!}</li>
 								<li>{!! link_to_action('\BruceCms\Pages\PagesController@index', 'Manage Your Existing Pages') !!}</li>
-								<li><a href="{{ url('vendors/add') }}">Add a New Vendor</a></li>
 								<hr>
 								<li><a href="{{ url('/auth/logout') }}">Logout</a></li>
 							</ul>
