@@ -17,18 +17,18 @@ class PagesServiceProvider extends ServiceProvider {
 
 		$this->publishes([__DIR__.'/views/pages/' => 'resources/views/pages/', 'pages']);
 		$this->publishes([__DIR__.'/views/layouts/' => 'resources/views/layouts/'], 'layouts');
-		$this->publishes([__DIR__.'/views/partials/' => 'resources/views/partials'], 'partials');
+		$this->publishes([__DIR__.'/views/partials/' => 'resources/views/partials/'], 'partials');
 
 		// For Laravel 5.1, which doesn't include this by default anymore.
-		$this->publishes([__DIR__.'/views/auth/' => 'resources/views/auth'], 'auth');
+		$this->publishes([__DIR__.'/views/auth/' => 'resources/views/auth/'], 'auth');
 		$this->publishes([__DIR__.'/views/app/' => 'resources/views/'], 'app');
 
 		// Create directories for file manager.
 		\File::makeDirectory(public_path('source'));
 		\File::makeDirectory(public_path('thumbs', 0775));
 
-		$this->publishes([__DIR__.'/tinymce/' => 'public/'], 'tincymce');
-		$this->publishes([__DIR__.'/filemanager/' => 'public'], 'filemanager');
+		$this->publishes([__DIR__.'/tinymce/' => 'public/tinymce/'], 'tincymce');
+		$this->publishes([__DIR__.'/filemanager/' => 'public/filemanager/'], 'filemanager');
 	}
  
 	/**
