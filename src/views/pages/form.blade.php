@@ -28,16 +28,21 @@
 </div>
 
 @section ('footer-scripts')
-    <script src="//tinymce.cachefly.net/4.1/tinymce.min.js"></script>
+    <script src="{{ asset('js/tinymce/tinymce.min.js') }}"></script>
     <script type="text/javascript">
         tinymce.init({
             selector: "textarea",
             plugins: [
-                "advlist autolink lists link image charmap print preview anchor",
-                "searchreplace visualblocks code fullscreen",
-                "insertdatetime media table contextmenu paste"
-            ],
-            toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
+                 "advlist autolink link image lists charmap print preview hr anchor pagebreak",
+                 "searchreplace wordcount visualblocks visualchars insertdatetime media nonbreaking",
+                 "table code contextmenu directionality emoticons paste textcolor responsivefilemanager"
+           ],
+           toolbar1: "undo redo | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | styleselect",
+           toolbar2: "| responsivefilemanager | link unlink anchor | image media | forecolor backcolor  | print preview code ",
+           image_advtab: true ,
+           relative_urls: false,
+           external_filemanager_path:"/filemanager/",
+           filemanager_title:"Responsive Filemanager" ,
+           external_plugins: { "filemanager" : "/filemanager/plugin.min.js"}
         });
-    </script>
 @stop

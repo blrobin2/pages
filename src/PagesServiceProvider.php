@@ -22,6 +22,13 @@ class PagesServiceProvider extends ServiceProvider {
 		// For Laravel 5.1, which doesn't include this by default anymore.
 		$this->publishes([__DIR__.'/views/auth/' => 'resources/views/auth'], 'auth');
 		$this->publishes([__DIR__.'/views/app/' => 'resources/views/'], 'app');
+
+		// Create directories for file manager.
+		\File::makeDirectory(public_path('source'));
+		\File::makeDirectory(public_path('thumbs', 0775));
+
+		$this->publishes([__DIR__.'/tinymce/' => 'public/'], 'tincymce');
+		$this->publishes([__DIR__.'/filemanager/' => 'public'], 'filemanager');
 	}
  
 	/**
