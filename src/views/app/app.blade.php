@@ -23,7 +23,7 @@
 
     <div class="container">
         <div class="row">
-        	@include('pages::partials/nav')
+        	@include('partials/nav')
 		</div><!--row-->
 		
 		<div class="row">
