@@ -29,7 +29,7 @@ Then, publish all the assets so that we can use them in the application.
 php artisan vendor:publish
 ```
 
-This will create a migration for the `pages` table, a PageRequest class in `app/Http/Requests`, and a number of views. You might recognize most of them as some iteration of the defaults from 5.0. Since 5.1 pulls them out, we're reintroducing them. It's this part that's the most opinionated about this package, and if this doesn't work for you, just don't use it.
+This will create a migration for the `pages` table, a PageRequest class in `app/Http/Requests`, and a number of views. You might recognize most of them as some iteration of the defaults from 5.0. Since 5.1 pulls them out, we're reintroducing them. We also publish some assets to the public folder, and create a couple of folders. This is for the page editor and file manager (more below).
 
 After you've published all the assets, you will need to get your [database configuration](http://laravel.com/docs/5.1/database) set and run:
 
@@ -52,7 +52,7 @@ The Page Manager is under the `pages` route. By default, you have no pages excep
 By either clicking on the link on the `pages` route, or by going to `pages/create`, you can create a new page. Each field is fairly self-explanatory, but for thoroughness's sake:
 * Title - The title of the page. This is also how the link will display in the navigation.
 * Link - The route that will be used to get to the page. As it notes, you don't want to put in a sentence or spaces between words. By convention, it recommends uses a dash.
-* Body - The actual content of the page. Pages uses [TinyMCE](http://www.tinymce.com/) as it's fairly lightweight, and does all the things most clients and end-users would need to do. A future upgrade may include a file manger.
+* Body - The actual content of the page. Pages uses [TinyMCE](http://www.tinymce.com/) as it's fairly lightweight, and does all the things most clients and end-users would need to do. We also include [Responsive Filemanager](http://www.responsivefilemanager.com/), a plugin for TinyMCE to manage files from the within. For usage, please refer to website. Don't worry, it's easy to use and much more performant than the site for it.
 * Hidden from Navigation? - If you want to create a page, but you don't want it to show up in the navigation.
 
 When the content is to your satisfaction, click 'Create Page'. It's that easy.
@@ -69,4 +69,4 @@ To view a page, just go to the link you set for it. You can also get to it from 
 
 ### Flash
 
-This package utilzes [Jeffrey Way's Flash Message](https://github.com/laracasts/flash) package, because we like it. Because we pull it in, you don't have to, and you can use it anywhere in your application that you would like to. Please refer to the github page for documentation.
+This package utilzes [Jeffrey Way's Flash Message](https://github.com/laracasts/flash) package to display success or error messages to the user. Because we pull it in, you don't have to, and you can use it anywhere in your application that you would like to. Please refer to the github page for documentation.
