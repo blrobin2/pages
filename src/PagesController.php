@@ -43,7 +43,7 @@ class PagesController extends Controller
 	{
 		$pages = Page::all()->sortBy('sort');
 
-        return view('pages::index', compact('pages'));
+        return view('pages.index', compact('pages'));
 	}
 
     /**
@@ -74,7 +74,7 @@ class PagesController extends Controller
 	 */
 	public function create()
 	{
-		return view('pages::create');
+		return view('pages.create');
 	}
 
 	/**
@@ -102,7 +102,7 @@ class PagesController extends Controller
 	{
 		$page = Page::where('link', $link)->firstOrFail();
 
-		return view('pages::show', compact('page'));
+		return view('pages.show', compact('page'));
 	}
 
 	/**
@@ -115,7 +115,7 @@ class PagesController extends Controller
 	{
 		$page = Page::where('link', $link)->firstOrFail();
 
-		return view('pages::edit', compact('page'));
+		return view('pages.edit', compact('page'));
 	}
 
 	/**
