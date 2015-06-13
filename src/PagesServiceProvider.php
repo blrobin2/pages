@@ -25,11 +25,11 @@ class PagesServiceProvider extends ServiceProvider {
 
 		// Create directories for file manager.
 		if(! is_dir(public_path('source'))) {
-			\File::makeDirectory(public_path('source'));
+			\File::makeDirectory(public_path('source', 0755, true));
 		}
 
 		if(! is_dir(public_path('thumbs'))) {
-			\File::makeDirectory(public_path('thumbs', 0775));
+			\File::makeDirectory(public_path('thumbs', 0775, true));
 		}
 
 		$this->publishes([__DIR__.'/tinymce/' => 'public/tinymce/'], 'tincymce');
