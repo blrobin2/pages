@@ -32,7 +32,7 @@ class PagesServiceProvider extends ServiceProvider {
 			\File::makeDirectory(public_path('thumbs', 0775, true));
 		}
 
-		$this->publishes([__DIR__.'/tinymce/' => 'public/tinymce/'], 'tincymce');
+		$this->publishes([__DIR__.'/tinymce/' => 'public/js/tinymce/'], 'tincymce');
 		$this->publishes([__DIR__.'/filemanager/' => 'public/filemanager/'], 'filemanager');
 	}
  

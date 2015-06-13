@@ -45,4 +45,5 @@
            filemanager_title:"Responsive Filemanager" ,
            external_plugins: { "filemanager" : "/filemanager/plugin.min.js"}
         });
+  </script>
 @stop
