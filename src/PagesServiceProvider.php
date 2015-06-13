@@ -15,8 +15,7 @@ class PagesServiceProvider extends ServiceProvider {
 		$this->publishes([__DIR__.'/migrations/' => 'database/migrations'], 'migrations');
 		$this->publishes([__DIR__.'/requests/' => 'app/Http/Requests/'], 'request');
 
-		$this->loadViewsFrom(__DIR__.'/views/', 'pages');
-
+		$this->publishes([__DIR__.'/views/pages/' => 'resources/views/pages/', 'pages']);
 		$this->publishes([__DIR__.'/views/layouts/' => 'resources/views/layouts/'], 'layouts');
 		$this->publishes([__DIR__.'/views/partials/' => 'resources/views/partials'], 'partials');
 
@@ -36,8 +35,6 @@ class PagesServiceProvider extends ServiceProvider {
 
 		$this->app->make('BruceCms\Pages\Page');
 		$this->app->make('BruceCms\Pages\PagesController');
-
-		$this->app->register('BruceCms\Pages\ViewComposerServiceProvider');
 
 		// Form Builder dependencies
 		$this->app->register('Collective\Html\HtmlServiceProvider');

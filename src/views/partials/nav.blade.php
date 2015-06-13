@@ -1,3 +1,5 @@
+@inject('pages', 'BruceCms\Pages\Page')
+
 <nav class="nav --main" role="navigation">
 	<ul class="nav__list">
 		<li class="nav__item">
