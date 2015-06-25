@@ -22,15 +22,11 @@ Route::get('pages/create', ['as' => 'createPage', 'uses' => 'BruceCms\Pages\Page
 /**  Save a new Page */
 Route::post('pages', 'BruceCms\Pages\PagesController@store');
 
-/** Point empty route to home page */
-Route::get('/', function(){
-    return view('layouts.home');
+/** Redirect empty route to home page */
+Route::get('/', function()
+{
+    return redirect()->action('\BruceCms\Pages\PagesController@show', ['home']);
 });
-
-Route::get('/home', function(){
-    return view('layouts.home');
-});
-
 
 /** View a single page (the heart of the CMS) */
 Route::get('{pages}', 'BruceCms\Pages\PagesController@show');
