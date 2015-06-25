@@ -49,9 +49,9 @@ class PagesServiceProvider extends ServiceProvider {
 		$this->app->make('BruceCms\Pages\PagesController');
 
 		// Form Builder dependencies
-		$this->app->register('Collective\Html\HtmlServiceProvider');
+		$this->app->register('Illuminate\Html\HtmlServiceProvider');
 		$loader = AliasLoader::getInstance();
-		$loader->alias('Form', 'Collective\Html\FormFacade');
+		$loader->alias('Form', 'Illuminate\Html\FormFacade');
 
 		// Flash dependencies
 		$this->app->register('Laracasts\Flash\FlashServiceProvider');
