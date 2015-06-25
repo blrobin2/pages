@@ -59,7 +59,6 @@ When the content is to your satisfaction, click 'Create Page'. It's that easy.
 
 #### Edit an Existing Page
 By either going to the page you wish to edit and adding '/edit' to the URL, or clicking the 'Edit' button from the Page Manager, you can edit the content you have previously set.
-**NOTE** The hidden feature seems to turn on and off randomly. I'll need to do some debugging there...
 
 #### Delete a Page
 To delete a page, click the 'Delete' button from the Page Manager. A confirmation box will show up, letting you know this is forever. Just confirm, and the page is gone.
