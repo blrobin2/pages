@@ -131,11 +131,11 @@ class PagesController extends Controller
 
 		$page->update($request->all());
 
-		if( ! isset($request->hidden))
-		{
-			$page->hidden = 0;
-			$page->save();
-		}
+        if(! $request->has('hidden'))
+        {
+            $page->hidden = 0;
+            $page->save();
+        }
 
 		Flash::message('Page successfully updated!');
 

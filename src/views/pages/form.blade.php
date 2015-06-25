@@ -19,7 +19,7 @@
 
 <!-- Hidden Form Input -->
 <div class="form-group">
-	{!! Form::label('hidden', 'Hidden from Navigation?:') !!}
+  {!! Form::label('hidden', 'Hidden from Navigation?:') !!}
     {!! Form::checkbox('hidden', 1, null, ['class' => 'form-control']) !!}
 </div>
 
