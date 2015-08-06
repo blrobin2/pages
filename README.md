@@ -49,11 +49,15 @@ Then run:
 php artisan db:seed
 ```
 
+In order to get the newly created home page to show up under the "/" route, you'll need to remove Laravel's default welcome route from `app/routes.php`.
+
 Then, you'll be ready to go!
 
 ## Usage
 
 In this package, everything except the pages themselves are hidden behind the [Auth middleware](http://laravel.com/docs/5.1/authentication#protecting-routes), so you will need to register a new administrator. We provide a view for `auth/register` by default, so I would create one that way.
+
+You'll also notice that the master `app/routes.php` can override any of the routes we have set up. If, for whatever reason, you need to change the URI, you can update it there. If you need help figuring out how to point to our internally controller, take a look at our `routes.php` in the `src/` directory.
 
 ### Routes
 
