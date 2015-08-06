@@ -1,8 +1,11 @@
 <?php namespace BruceCms\Pages;
 
 use Illuminate\Database\Eloquent\Model;
+use Knp\Menu\Matcher\Matcher;
+use Knp\Menu\Renderer\ListRenderer;
 
-class Page extends Model {
+class Page extends Model
+{
 
     /**
      * Columns which are allowed to be mass-assigned.
@@ -26,5 +29,21 @@ class Page extends Model {
     public function scopeUnhidden($query)
     {
         return $query->where('hidden', '0');
+    }
+
+    /**
+     * Build the navigation for pages.
+     */
+    public function printMenu()
+    {
+        $factory = new MenuFactory();
+        $menu = $factory->createItem('navigation');
+
+        foreach ($this->hidden()->get() as $page) {
+            $menu->addChild($page->title, [ 'uri' => URL::to($page->link) ]);
+        }
+
+        $renderer = new ListRenderer(new Matcher());
+        echo $renderer->render($menu);
     }
 }
