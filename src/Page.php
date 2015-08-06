@@ -1,6 +1,7 @@
 <?php namespace BruceCms\Pages;
 
 use Illuminate\Database\Eloquent\Model;
+use Knp\Menu\MenuFactory;
 use Knp\Menu\Matcher\Matcher;
 use Knp\Menu\Renderer\ListRenderer;
 
@@ -39,8 +40,8 @@ class Page extends Model
         $factory = new MenuFactory();
         $menu = $factory->createItem('navigation');
 
-        foreach ($this->hidden()->get() as $page) {
-            $menu->addChild($page->title, [ 'uri' => URL::to($page->link) ]);
+        foreach ($this->where('hidden', 0)->get() as $page) {
+            $menu->addChild($page->title, [ 'uri' => \URL::to($page->link) ]);
         }
 
         $renderer = new ListRenderer(new Matcher());
