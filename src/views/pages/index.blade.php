@@ -26,7 +26,11 @@
                     <td>{!! link_to_action('\BruceCms\Pages\PagesController@show', $page->title, $page->link) !!}</td>
                     <td><select name="parent" id="parent" class="form-control">
                             @foreach($pages as $pageSelection)
-                                <option name="{{$page->id}}" value="{{$pageSelection->id}}">{{ $pageSelection->name }}</option>
+                                <option name="{{$page->id}}" value="{{$pageSelection->id}}"
+                                        @if($page->parent_id == $pageSelection->id)
+                                            selected="selected"
+                                        @endif
+                                        >{{ $pageSelection->title }}</option>
                             @endforeach
                         </select>
                     </td>
