@@ -37,7 +37,7 @@ After you've published all the assets, you will need to get your [database confi
 php artisan migrate
 ```
 
-In order to solve a chicken and egg problem, we need to create a "Home" page. So, in your `database/seeds/DatabaseSeeder.php` add the following in the `run` method:
+In order to solve a chicken and egg problem, we need to create a "Home" page and an admin. So, in your `database/seeds/DatabaseSeeder.php` add the following in the `run` method:
 
 ```php
 $this->call(BruceCMS\Pages\Seeds\PageSeeder::class);
@@ -55,7 +55,12 @@ Then, you'll be ready to go!
 
 ## Usage
 
-In this package, everything except the pages themselves are hidden behind the [Auth middleware](http://laravel.com/docs/5.1/authentication#protecting-routes), so you will need to register a new administrator. We provide a view for `auth/register` by default, so I would create one that way.
+In this package, everything except the pages themselves are hidden behind the [Auth middleware](http://laravel.com/docs/5.1/authentication#protecting-routes). Since you ran the seeder, you have a default admin with the following credentials:
+
+* Email: admin@example.com
+* Password: password
+
+PLEASE change these to your domains needs.
 
 You'll also notice that the master `app/routes.php` can override any of the routes we have set up. If, for whatever reason, you need to change the URI, you can update it there. If you need help figuring out how to point to our internally controller, take a look at our `routes.php` in the `src/` directory.
 
@@ -94,5 +99,5 @@ This package includes a partial for navigation output that is included by defaul
 
 ### Flash
 
-This package utilzes [Jeffrey Way's Flash Message](https://github.com/laracasts/flash) package to display success or error messages to the user. Because we pull it in, you don't have to, and you can use it anywhere in your application that you would like to. Please refer to the github page for documentation.
+This package utilizes [Jeffrey Way's Flash Message](https://github.com/laracasts/flash) package to display success or error messages to the user. Because we pull it in, you don't have to, and you can use it anywhere in your application that you would like to. Please refer to the github page for documentation.
 
