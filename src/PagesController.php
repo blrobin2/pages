@@ -159,17 +159,22 @@ class PagesController extends Controller
         return redirect('pages');
 	}
 
+	/**
+	 * Generate a sitemap and display it as XML.
+	 *
+	 * @return Response
+	 */
 	public function sitemap()
 	{
-		$sitemap = App::make("sitemap");
-		
+		$sitemap = \App::make("sitemap");
+
 		// If it isn't cached, we need to generate a new version.
 		if ( ! $sitemap->isCached()) {
 
-			$pages = DB::table('pages')->orderBy('sort')->get();
+			$pages = \DB::table('pages')->orderBy('sort')->get();
 
 			foreach ($pages as $page) {
-				$sitemap->add(URL::to($page->link), $page->updated_at, '0.9', 'monthly');
+				$sitemap->add(\URL::to($page->link), $page->updated_at, '0.9', 'monthly');
 			}
 		}
 
