@@ -37,7 +37,7 @@ After you've published all the assets, you will need to get your [database confi
 php artisan migrate
 ```
 
-In order to solve a chicken and egg problem, we need to create a "Home" entry. So, in your `database/seeds/DatabaseSeeder.php` add the following in the `run` method:
+In order to solve a chicken and egg problem, we need to create a "Home" page. So, in your `database/seeds/DatabaseSeeder.php` add the following in the `run` method:
 
 ```php
 $this->call(BruceCMS\Pages\Seeds\PageSeeder::class);

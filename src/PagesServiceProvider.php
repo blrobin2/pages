@@ -48,13 +48,19 @@ class PagesServiceProvider extends ServiceProvider {
 		$this->app->make('BruceCms\Pages\Page');
 		$this->app->make('BruceCms\Pages\PagesController');
 
+		// Load aliases
+		$loader = AliasLoader::getInstance();
+
 		// Form Builder dependencies
 		$this->app->register('Illuminate\Html\HtmlServiceProvider');
-		$loader = AliasLoader::getInstance();
+
 		$loader->alias('Form', 'Illuminate\Html\FormFacade');
 
 		// Flash dependencies
 		$this->app->register('Laracasts\Flash\FlashServiceProvider');
 		$loader->alias('Flash', 'Laracasts\Flash\Flash');
+
+		// Sitemap dependencies
+		$this->app->register('Roumen\Sitemap\SitemapServiceProvider');
 	}
 }

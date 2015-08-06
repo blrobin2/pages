@@ -9,6 +9,11 @@ Route::controllers([
 ]);
 
 /**
+ * Sitemap
+ */
+Route::get('sitemap[ .xml ]*', 'BruceCms\Pages\PagesController@sitemap');
+
+/**
  * Page Content Manager
  */
 Route::get('pages', 'BruceCms\Pages\PagesController@index');

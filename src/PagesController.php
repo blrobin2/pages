@@ -158,4 +158,22 @@ class PagesController extends Controller
 
         return redirect('pages');
 	}
+
+	public function sitemap()
+	{
+		$sitemap = App::make("sitemap");
+		$sitemap->setCache('laravel.sitemap', 3600);
+
+		// If it isn't cached, we need to generate a new version.
+		if ( ! $sitemap->isCached()) {
+
+			$pages = DB::table('pages')->orderBy('sort')->get();
+
+			foreach ($pages as $page) {
+				$sitemap->add(URL::to($page->link), $page->updated_at, '0.9', 'monthly');
+			}
+		}
+
+		return $sitemap->render('xml');
+	}
 }
