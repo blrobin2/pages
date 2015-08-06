@@ -152,7 +152,7 @@ class PagesController extends Controller
 
         $page->update($request->all());
 
-        if ( ! $request->has('hidden')) {
+        if (! $request->has('hidden')) {
             $page->hidden = 0;
             $page->save();
         }
@@ -189,7 +189,7 @@ class PagesController extends Controller
         $sitemap = \App::make("sitemap");
 
         // If it isn't cached, we need to generate a new version.
-        if ( ! $sitemap->isCached()) {
+        if (! $sitemap->isCached()) {
 
             $pages = \DB::table('pages')->orderBy('sort')->get();
 

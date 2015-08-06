@@ -3,64 +3,66 @@
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Foundation\AliasLoader;
  
-class PagesServiceProvider extends ServiceProvider {
+class PagesServiceProvider extends ServiceProvider
+{
  
-	/**
-	* Bootstrap the application services.
-	*
-	* @return void
-	*/
-	public function boot()
-	{
-		$this->publishes([__DIR__.'/migrations/' => 'database/migrations'], 'migrations');
-		$this->publishes([__DIR__.'/requests/' => 'app/Http/Requests/'], 'request');
+    /**
+    * Bootstrap the application services.
+    *
+    * @return void
+    */
+    public function boot()
+    {
+        $this->publishes([__DIR__.'/Migrations/' => 'database/migrations'], 'migrations');
+        $this->publishes([__DIR__.'/requests/' => 'app/Http/Requests/'], 'request');
 
-		$this->publishes([__DIR__.'/views/pages/' => 'resources/views/pages/', 'pages']);
-		$this->publishes([__DIR__.'/views/layouts/' => 'resources/views/layouts/'], 'layouts');
-		$this->publishes([__DIR__.'/views/partials/' => 'resources/views/partials/'], 'partials');
+        $this->publishes([__DIR__.'/views/pages/' => 'resources/views/pages/', 'pages']);
+        $this->publishes([__DIR__.'/views/layouts/' => 'resources/views/layouts/'], 'layouts');
+        $this->publishes([__DIR__.'/views/partials/' => 'resources/views/partials/'], 'partials');
 
-		// For Laravel 5.1, which doesn't include this by default anymore.
-		$this->publishes([__DIR__.'/views/auth/' => 'resources/views/auth/'], 'auth');
-		$this->publishes([__DIR__.'/views/app/' => 'resources/views/'], 'app');
+        // For Laravel 5.1, which doesn't include this by default anymore.
+        $this->publishes([__DIR__.'/views/auth/' => 'resources/views/auth/'], 'auth');
+        $this->publishes([__DIR__.'/views/app/' => 'resources/views/'], 'app');
 
-		// Create directories for file manager.
-		if(! is_dir(public_path('source'))) {
-			\File::makeDirectory(public_path('source', 0755, true));
-		}
+        // Create directories for file manager.
+        if (! is_dir(public_path('source'))) {
+            \File::makeDirectory(public_path('source', 0755, true));
+        }
 
-		if(! is_dir(public_path('thumbs'))) {
-			\File::makeDirectory(public_path('thumbs', 0775, true));
-		}
+        if (! is_dir(public_path('thumbs'))) {
+            \File::makeDirectory(public_path('thumbs', 0775, true));
+        }
 
-		$this->publishes([__DIR__.'/tinymce/' => 'public/js/tinymce/'], 'tincymce');
-		$this->publishes([__DIR__.'/filemanager/' => 'public/filemanager/'], 'filemanager');
-	}
- 
-	/**
-	* Register the application services.
-	*
-	* @return void
-	*/
-	public function register()
-	{
-		include __DIR__.'/routes.php';
+        $this->publishes([__DIR__.'/tinymce/' => 'public/js/tinymce/'], 'tincymce');
+        $this->publishes([__DIR__.'/filemanager/' => 'public/filemanager/'], 'filemanager');
+    }
 
-		$this->app->make('BruceCms\Pages\Page');
-		$this->app->make('BruceCms\Pages\PagesController');
+    /**
+    * Register the application services.
+    *
+    * @return void
+    */
+    public function register()
+    {
+        include __DIR__.'/routes.php';
 
-		// Load aliases
-		$loader = AliasLoader::getInstance();
+        $this->app->make('BruceCms\Pages\Page');
+        $this->app->make('BruceCms\Pages\PagesController');
+        $this->app->make('BruceCms\Pages\AuthenticationController');
 
-		// Form Builder dependencies
-		$this->app->register('Illuminate\Html\HtmlServiceProvider');
+        // Load aliases
+        $loader = AliasLoader::getInstance();
 
-		$loader->alias('Form', 'Illuminate\Html\FormFacade');
+        // Form Builder dependencies
+        $this->app->register('Illuminate\Html\HtmlServiceProvider');
 
-		// Flash dependencies
-		$this->app->register('Laracasts\Flash\FlashServiceProvider');
-		$loader->alias('Flash', 'Laracasts\Flash\Flash');
+        $loader->alias('Form', 'Illuminate\Html\FormFacade');
 
-		// Sitemap dependencies
-		$this->app->register('Roumen\Sitemap\SitemapServiceProvider');
-	}
+        // Flash dependencies
+        $this->app->register('Laracasts\Flash\FlashServiceProvider');
+        $loader->alias('Flash', 'Laracasts\Flash\Flash');
+
+        // Sitemap dependencies
+        $this->app->register('Roumen\Sitemap\SitemapServiceProvider');
+    }
 }

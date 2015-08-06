@@ -4,9 +4,15 @@
 * Authentication - Hidden away in Laravel 5.1
 */
 Route::controllers([
-    'auth' => 'App\Http\Controllers\Auth\AuthController',
     'password' => 'App\Http\Controllers\Auth\PasswordController',
 ]);
+
+/**
+ *  Logins
+ */
+Route::get('login', 'BruceCms\Pages\AuthenticationController@getLogin');
+Route::post('login', 'BruceCms\Pages\AuthenticationController@postLogin');
+Route::get('logout', 'BruceCms\Pages\AuthenticationController@getLogout');
 
 /**
  * Sitemap
@@ -31,8 +37,7 @@ Route::get('pages/create', ['as' => 'createPage', 'uses' => 'BruceCms\Pages\Page
 Route::post('pages', 'BruceCms\Pages\PagesController@store');
 
 /** Redirect empty route to home page */
-Route::get('/', function()
-{
+Route::get('/', function () {
     return redirect()->action('\BruceCms\Pages\PagesController@show', ['home']);
 });
 
