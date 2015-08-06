@@ -41,7 +41,7 @@ class Page extends Model
         $menu = $factory->createItem('navigation');
 
         foreach ($this->unhidden()->orderBy('sort')->get() as $page) {
-            $menu->addChild($page->title, [ 'uri' => \URL::to($page->link) ]);
+            $menu->addChild($page->title, [ 'uri' => '/'.$page->link ]);
         }
 
         $renderer = new ListRenderer(new Matcher());

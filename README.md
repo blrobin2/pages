@@ -62,7 +62,7 @@ You'll also notice that the master `app/routes.php` can override any of the rout
 ### Routes
 
 #### Page Manager
-The Page Manager is under the `pages` route. By default, you have no pages except the home page, which is not really a page because it's usually a special case. More on that later. If you want to change the sorting of pages in the navigation, you can simply drag the rows to stack in the order that you wish and click 'Sort Pages'.
+The Page Manager is under the `pages` route. If you ran the database seeder, you should see the home page. If you want to change the sorting of pages in the navigation, you can simply drag the rows to stack in the order that you wish and click 'Sort Pages'.
 
 #### Create a New Page
 By either clicking on the link on the `pages` route, or by going to `pages/create`, you can create a new page. Each field is fairly self-explanatory, but for thoroughness's sake:
@@ -82,6 +82,18 @@ To delete a page, click the 'Delete' button from the Page Manager. A confirmatio
 #### View a page
 To view a page, just go to the link you set for it. You can also get to it from the navigation links (it would be pretty useless if you couldn't, huh?)
 
+#### Sitemap
+This packages uses [a sitemap generator built for Laravel](https://github.com/RoumenDamianoff/laravel-sitemap) and generate a default one that includes all pages created using this system. If for some reason you need a more complex sitemap, you can override the route in `app/routes.php` and refer to the package's documentation. We recommend sticking to dynamic sitemaps as serving an actual .xml file can be troublesome. Regardless, the package includes that capability if you need it.
+
+
+### Navigation Menu
+This package includes a partial for navigation output that is included by default in the main app layout. It provides a number of hooks to make CSS easier:
+* A "nav" class on the `nav` element, as well as a "--main" flag, in case you have multiple menus.
+* A "first" class on the first element in the navigation. This adjusts to your sorting.
+* A "last" class on the last element in the navigation. Like first, this adjusts to your sorting.
+* A "current" class on the current page.
+
 ### Flash
 
 This package utilzes [Jeffrey Way's Flash Message](https://github.com/laracasts/flash) package to display success or error messages to the user. Because we pull it in, you don't have to, and you can use it anywhere in your application that you would like to. Please refer to the github page for documentation.
+
