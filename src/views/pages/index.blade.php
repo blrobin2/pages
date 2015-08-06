@@ -14,6 +14,7 @@
             <tr>
                 <th>ID</th>
                 <th>Title</th>
+                <th>Parent</th>
                 <th>Hidden?</th>
                 <th colspan="2"></th>
             </tr>
@@ -23,6 +24,12 @@
                 <tr id="{{ $page->id }}">
                     <td>{{ $page->id }}</td>
                     <td>{!! link_to_action('\BruceCms\Pages\PagesController@show', $page->title, $page->link) !!}</td>
+                    <td><select name="parent" id="parent" class="form-control">
+                            @foreach($pages as $pageSelection)
+                                <option name="{{$page->id}}" value="{{$pageSelection->id}}">{{ $pageSelection->name }}</option>
+                            @endforeach
+                        </select>
+                    </td>
                     <td>@if($page->hidden) {!! 'Yes' !!} @else {!! 'No' !!} @endif</td>
                     <td>
                         {!! link_to_action('\BruceCms\Pages\PagesController@edit', 'Edit', $page->link, ['class' => 'btn btn-default']) !!}
@@ -59,6 +66,16 @@
                 }
             });
             $('#sortable').disableSelection();
+            $('#parent').on('change', function()
+            {
+                var $selection = $(this).child('option:selected');
+                var $id = $selection.attr('name');
+                var $parent_id = $selection.val();
+                $.post('{{ action('\BruceCms\Pages\PagesController@setParent') }}', { id: $id, parent: $parent_id })
+                        .done(function() {
+                           alert("Parent changed");
+                        });
+            });
         });
     </script>
 @stop
