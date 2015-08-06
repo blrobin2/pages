@@ -40,7 +40,7 @@ php artisan migrate
 In order to solve a chicken and egg problem, we need to create a "Home" entry. So, in your `database/seeds/DatabaseSeeder.php` add the following in the `run` method:
 
 ```php
-$this->call(BruceCMS\Pages\Seeds\PageSeeder);
+$this->call(BruceCMS\Pages\Seeds\PageSeeder::class);
 ```
 
 Then run:
