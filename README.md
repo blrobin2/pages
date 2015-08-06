@@ -91,7 +91,6 @@ This package includes a partial for navigation output that is included by defaul
 * A "nav" class on the `nav` element, as well as a "--main" flag, in case you have multiple menus.
 * A "first" class on the first element in the navigation. This adjusts to your sorting.
 * A "last" class on the last element in the navigation. Like first, this adjusts to your sorting.
-* A "current" class on the current page.
 
 ### Flash
 
