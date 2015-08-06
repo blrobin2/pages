@@ -162,8 +162,7 @@ class PagesController extends Controller
 	public function sitemap()
 	{
 		$sitemap = App::make("sitemap");
-		$sitemap->setCache('laravel.sitemap', 3600);
-
+		
 		// If it isn't cached, we need to generate a new version.
 		if ( ! $sitemap->isCached()) {
 

@@ -11,7 +11,7 @@ Route::controllers([
 /**
  * Sitemap
  */
-Route::get('sitemap[ .xml ]*', 'BruceCms\Pages\PagesController@sitemap');
+Route::get('sitemap.xml', 'BruceCms\Pages\PagesController@sitemap');
 
 /**
  * Page Content Manager
