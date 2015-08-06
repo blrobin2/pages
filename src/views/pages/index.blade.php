@@ -2,6 +2,7 @@
 
 @section('header-styles')
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 @stop
 
 @section('page-content')
@@ -24,15 +25,21 @@
                 <tr id="{{ $page->id }}">
                     <td>{{ $page->id }}</td>
                     <td>{!! link_to_action('\BruceCms\Pages\PagesController@show', $page->title, $page->link) !!}</td>
-                    <td><select name="parent" id="parent" class="form-control">
-                            @foreach($pages as $pageSelection)
-                                <option name="{{$page->id}}" value="{{$pageSelection->id}}"
-                                        @if($page->parent_id == $pageSelection->id)
+                    <td>
+                        <form class="form-inline" method="POST" 
+                            action="{{ action('\BruceCms\Pages\PagesController@setParent', $page->id) }}">
+                            <select name="parent" id="parent" class="form-control">
+                                @foreach($pages as $pageSelection)
+                                    <option name="{{$pageSelection->id}}}" value="{{$pageSelection->id}}"
+                                            @if($page->parent_id == $pageSelection->id)
                                             selected="selected"
-                                        @endif
-                                        >{{ $pageSelection->title }}</option>
-                            @endforeach
-                        </select>
+                                            @endif
+                                            >{{ $pageSelection->title }}</option>
+                                @endforeach
+                            </select>
+                            {{ csrf_field() }}
+                            <input type="submit" class="btn btn-info" value="Save">
+                        </form>
                     </td>
                     <td>@if($page->hidden) {!! 'Yes' !!} @else {!! 'No' !!} @endif</td>
                     <td>
@@ -40,8 +47,10 @@
                     </td>
                     <td>
 
-                        {!! Form::open(['method'=>'DELETE','action'=>['\BruceCms\Pages\PagesController@destroy', $page->link], 'class' => '+inline-block']) !!}
-                        {!! Form::submit('Delete', ['class' => 'btn btn-danger', 'onclick' =>'return confirm("Are you sure? This cannot be undone.");']) !!}
+                        {!! Form::open(['method'=>'DELETE','action'=>['\BruceCms\Pages\PagesController@destroy', $page->link], 
+                                'class' => '+inline-block']) !!}
+                        {!! Form::submit('Delete', ['class' => 'btn btn-danger', 
+                                'onclick' =>'return confirm("Are you sure? This cannot be undone.");']) !!}
                         {!! Form::close() !!}
                     </td>
                 </tr>
@@ -70,16 +79,6 @@
                 }
             });
             $('#sortable').disableSelection();
-            $('#parent').on('change', function()
-            {
-                var $selection = $(this).child('option:selected');
-                var $id = $selection.attr('name');
-                var $parent_id = $selection.val();
-                $.post('{{ action('\BruceCms\Pages\PagesController@setParent') }}', { id: $id, parent: $parent_id })
-                        .done(function() {
-                           alert("Parent changed");
-                        });
-            });
         });
     </script>
 @stop

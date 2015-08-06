@@ -22,7 +22,7 @@ Route::get('pages', 'BruceCms\Pages\PagesController@index');
 Route::post('pages/sort', 'BruceCms\Pages\PagesController@sort');
 
 /** Set the parent page */
-Route::post('pages/parent', 'BruceCms\Pages\PagesController@setParent');
+Route::post('pages/{pages}/parent', 'BruceCms\Pages\PagesController@setParent');
 
 /** Create a new Page */
 Route::get('pages/create', ['as' => 'createPage', 'uses' => 'BruceCms\Pages\PagesController@create']);

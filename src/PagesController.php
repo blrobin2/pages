@@ -70,9 +70,22 @@ class PagesController extends Controller
         return redirect()->back();
     }
 
-    public function setParent(Request $request)
+    /**
+     * Set the parent page for the given id.
+     *
+     * @param $id
+     * @param Request $request
+     * @return Redirect
+     */
+    public function setParent($id, Request $request)
     {
-        dd($request->all());
+        $page = Page::find($id);
+
+        $page->parent = $request->get('parent');
+
+        $page->save();
+
+        return redirect()->back();
     }
 
     /**
