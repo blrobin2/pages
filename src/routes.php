@@ -8,11 +8,14 @@ Route::controllers([
 ]);
 
 /**
- *  Logins
+ *  Login and Profile Manager
  */
 Route::get('login', 'BruceCms\Pages\AuthenticationController@getLogin');
 Route::post('login', 'BruceCms\Pages\AuthenticationController@postLogin');
 Route::get('logout', 'BruceCms\Pages\AuthenticationController@getLogout');
+Route::get('profile/{profile}/edit', 'BruceCms\Pages\AuthenticationController@getProfile');
+Route::post('profile/{profile}/edit', 'BruceCms\Pages\AuthenticationController@postProfile');
+
 
 /**
  * Sitemap

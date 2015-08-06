@@ -25,6 +25,7 @@
 							<ul class="dropdown-menu" role="menu">
 								<li>{!! link_to_action('\BruceCms\Pages\PagesController@create', 'Create a New Page') !!}</li>
 								<li>{!! link_to_action('\BruceCms\Pages\PagesController@index', 'Manage Your Existing Pages') !!}</li>
+								<li>{!! link_to_action('\BruceCms\Pages\AuthenticationController@getProfile', 'Edit Your Profile') !!}
 								<hr>
 								<li><a href="{{ url('/auth/logout') }}">Logout</a></li>
 							</ul>

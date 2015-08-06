@@ -3,7 +3,9 @@
 namespace BruceCms\Pages;
 
 use App/Http/Controllers/Controller;
+use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App/User;
 
 class AuthenticationController extends Controller
 {
@@ -13,6 +15,18 @@ class AuthenticationController extends Controller
     public function __construct()
     {
         $this->middleware('guest', ['except' => ['getLogout']]);
+    }
+
+    public function getProfile($id)
+    {
+        $user = User::find($id);
+
+        return view('auth.profile', compact('user'));
+    }
+
+    public function postProfile($id, Request $request)
+    {
+        dd($request->all());
     }
 
     /**

@@ -60,7 +60,7 @@ In this package, everything except the pages themselves are hidden behind the [A
 * Email: admin@example.com
 * Password: password
 
-PLEASE change these to your domains needs.
+PLEASE change these to your domains needs. To do so, go to the "Edit Profile" link in the administration navigation, or go to `profile/{id}/edit`, where "id" is the id set the in the database. If you are unsure of what that id is and you have only run the seeder, then it is likely 1. If you truly cannot check this number, I don't know what you are doing with your life, but please get it together.
 
 You'll also notice that the master `app/routes.php` can override any of the routes we have set up. If, for whatever reason, you need to change the URI, you can update it there. If you need help figuring out how to point to our internally controller, take a look at our `routes.php` in the `src/` directory.
 
