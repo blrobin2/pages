@@ -40,7 +40,7 @@ class Page extends Model
         $factory = new MenuFactory();
         $menu = $factory->createItem('navigation');
 
-        foreach ($this->where('hidden', 0)->get() as $page) {
+        foreach ($this->unhidden()->orderBy('sort')->get() as $page) {
             $menu->addChild($page->title, [ 'uri' => \URL::to($page->link) ]);
         }
 
