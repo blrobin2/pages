@@ -1,10 +1,10 @@
-<?php namespace BruceCms\Pages;
+<?php namespace BruceCms\Pages\Seeds;
 
 use DB;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 
-class DatabaseSeeder extends Seeder
+class PageSeeder extends Seeder
 {
     /**
      * Run the database seeds.
