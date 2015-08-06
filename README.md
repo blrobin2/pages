@@ -88,9 +88,9 @@ This packages uses [a sitemap generator built for Laravel](https://github.com/Ro
 
 ### Navigation Menu
 This package includes a partial for navigation output that is included by default in the main app layout. It provides a number of hooks to make CSS easier:
-* A "nav" class on the `nav` element, as well as a "--main" flag, in case you have multiple menus.
-* A "first" class on the first element in the navigation. This adjusts to your sorting.
-* A "last" class on the last element in the navigation. Like first, this adjusts to your sorting.
+* A "nav" class on the `<nav>` element, as well as a "--main" flag, in case you have multiple menus.
+* A "first" class on the first `<li>` element in the navigation. This adjusts to your sorting.
+* A "last" class on the last `<li>` element in the navigation. Like first, this adjusts to your sorting.
 
 ### Flash
 
