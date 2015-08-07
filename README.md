@@ -40,7 +40,7 @@ php artisan migrate
 In order to solve a chicken and egg problem, we need to create a "Home" page and an admin. So, in your `database/seeds/DatabaseSeeder.php` add the following in the `run` method:
 
 ```php
-$this->call(BruceCMS\Pages\Seeds\PageSeeder::class);
+$this->call(BruceCms\Pages\Seeds\PageSeeder::class);
 ```
 
 Then run:
