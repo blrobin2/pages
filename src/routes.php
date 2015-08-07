@@ -3,9 +3,9 @@
 /**
  *  Login and Passwords
  */
-Route::get('login', 'BruceCms\Pages\AuthenticationController@getLogin');
-Route::post('login', 'BruceCms\Pages\AuthenticationController@postLogin');
-Route::get('logout', 'BruceCms\Pages\AuthenticationController@getLogout');
+Route::get('auth/login', 'BruceCms\Pages\AuthenticationController@getLogin');
+Route::post('auth/login', 'BruceCms\Pages\AuthenticationController@postLogin');
+Route::get('auth/logout', 'BruceCms\Pages\AuthenticationController@getLogout');
 
 Route::controllers([
     'password' => 'App\Http\Controllers\Auth\PasswordController',

@@ -96,12 +96,6 @@ class AuthenticationController extends Controller
         ];
 
         if ($request->has('password')) {
-            $validator = $this->validator($request->all());
-
-            if ($validator->fails()) {
-                $this->throwValidationException($request, $validator);
-            }
-
             $data['password'] = bcrypt($request->get('password'));
         }
 

@@ -10,12 +10,12 @@
 
         <div class="form-group">
             <label for="name">Username</label>
-            <input type="text" name="name" id="name" class="form-control" value="{{ $user->name }}">
+            <input type="text" name="name" id="name" class="form-control" value="{{ $user->name }}" required="required">
         </div>
 
         <div class="form-group">
             <label for="email">Email</label>
-            <input type="email" name="email" id="email" class="form-control" value="{{ $user->email }}">
+            <input type="email" name="email" id="email" class="form-control" value="{{ $user->email }}" required="required">
         </div>
 
         <div class="form-group">
