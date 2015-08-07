@@ -6,9 +6,14 @@
 @stop
 
 @section('page-content')
-    <h1>Page Manager</h1>
-    <h2>(Drag and drop rows to sort pages):</h2>
-    <p>To create a new page, <a href="{{ url('pages/create') }}">click here</a>.</p>
+    <h1 class="page-header">Page Manager</h1>
+    <h3>Sorting</h3>
+    <p>Drag and Drop rows to sort pages, then click the "Save Sort" button.</p>
+    <h3>Parent Pages</h3>
+    <p>Select a page from the parent drop down to make that page it's child. You can only set it one level deep.<br> If you
+        manage to find a way to set a child as a parent, <strong>the page will disappear</strong> from navigation.<br> To bring
+        it back, just set it to a top-level page or to "None".</p>
+    <p><a class="btn btn-success" href="{{ url('pages/create') }}">Create a New Page</a></p>
     @if(! $pages->isEmpty())
         <table class="table table-striped">
             <thead>
@@ -26,30 +31,33 @@
                     <td>{{ $page->id }}</td>
                     <td>{!! link_to_action('\BruceCms\Pages\PagesController@show', $page->title, $page->link) !!}</td>
                     <td>
-                        <form class="form-inline" method="POST" 
-                            action="{{ action('\BruceCms\Pages\PagesController@setParent', $page->id) }}">
+                        <form class="form-inline" method="POST"
+                              action="{{ action('\BruceCms\Pages\PagesController@setParent', $page->id) }}">
                             <select name="parent" id="parent" class="form-control">
+                                <option name="0" value="0" {{ ($page->id == 0 ? "selected" : "") }}>[None]</option>
                                 @foreach($pages as $pageSelection)
-                                    <option name="{{$pageSelection->id}}}" value="{{$pageSelection->id}}"
-                                            @if($page->parent_id == $pageSelection->id)
-                                            selected="selected"
-                                            @endif
-                                            >{{ $pageSelection->title }}</option>
+                                    @if($pageSelection->id !== $page->id && $pageSelection->parent_id == 0)
+                                        <option name="{{$pageSelection->id}}}" value="{{$pageSelection->id}}"
+                                                @if($page->parent_id == $pageSelection->id)
+                                                selected="selected"
+                                                @endif
+                                                >{{ $pageSelection->title }}</option>
+                                    @endif
                                 @endforeach
                             </select>
                             {{ csrf_field() }}
-                            <input type="submit" class="btn btn-info" value="Save">
+                            <input type="submit" class="btn btn-info" value="Set Parent">
                         </form>
                     </td>
                     <td>@if($page->hidden) {!! 'Yes' !!} @else {!! 'No' !!} @endif</td>
                     <td>
-                        {!! link_to_action('\BruceCms\Pages\PagesController@edit', 'Edit', $page->link, ['class' => 'btn btn-default']) !!}
+                        {!! link_to_action('\BruceCms\Pages\PagesController@edit', 'Edit Page', $page->link, ['class' => 'btn btn-default']) !!}
                     </td>
                     <td>
 
                         {!! Form::open(['method'=>'DELETE','action'=>['\BruceCms\Pages\PagesController@destroy', $page->link], 
                                 'class' => '+inline-block']) !!}
-                        {!! Form::submit('Delete', ['class' => 'btn btn-danger', 
+                        {!! Form::submit('Delete Page', ['class' => 'btn btn-danger',
                                 'onclick' =>'return confirm("Are you sure? This cannot be undone.");']) !!}
                         {!! Form::close() !!}
                     </td>
@@ -59,7 +67,7 @@
         </table>
         {!! Form::open(['action'=>'\BruceCms\Pages\PagesController@sort']) !!}
         <input id="order" name="order" type="hidden" value="1, 2, 3, 4"/>
-        <button id="updateSort" class="btn btn-primary">Sort Pages</button>
+        <button id="updateSort" class="btn btn-primary">Save Sort</button>
         {!! Form::close() !!}
     @else
         <p>No pages.</p>

@@ -79,11 +79,10 @@ class PagesController extends Controller
      */
     public function setParent($id, Request $request)
     {
-        $page = Page::find($id);
+        Page::where('id', $id)
+            ->update(['parent_id' => $request->get('parent')]);
 
-        $page->parent = $request->get('parent');
-
-        $page->save();
+        Flash::message('Parent successfully set!');
 
         return redirect()->back();
     }
@@ -106,7 +105,13 @@ class PagesController extends Controller
      */
     public function store(PageRequest $request)
     {
-        Page::create($request->all());
+        $data = $request->all();
+
+        if(preg_match('/\s/', $request->get('link')) > 0) {
+            $data['link'] = str_replace(' ', '-', $request->get('link'));
+        }
+
+        Page::create($data);
 
         Flash::message('Page successfully created!');
 

@@ -74,6 +74,10 @@ class AuthenticationController extends Controller
      */
     public function edit($id)
     {
+        if (\Auth::user()->id !== $id) {
+            return redirect('admins');
+        }
+
         $user = User::find($id);
 
         return view('auth.edit', compact('user'));
@@ -96,7 +100,6 @@ class AuthenticationController extends Controller
         }
 
         if ($request->has('password')) {
-
             $passwordValidator = $this->passwordValidator($request->all());
 
             if ($passwordValidator->fails()) {

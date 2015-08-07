@@ -71,6 +71,8 @@ You'll also notice that the master `app/routes.php` can override any of the rout
 #### Page Manager
 The Page Manager is under the `pages` route. If you ran the database seeder, you should see the home page. If you want to change the sorting of pages in the navigation, you can simply drag the rows to stack in the order that you wish and click 'Sort Pages'.
 
+You can also use this page to set parent pages if you need nested navigation. At this point, the package only supports one level of nesting. So, if you set a page to a child of a child, IT MIGHT DISAPPEAR FROM THE NAVIGATION. To make it reappear, just set the parent to a top level navigation element, or to "none";
+
 #### Create a New Page
 By either clicking on the link on the `pages` route, or by going to `pages/create`, you can create a new page. Each field is fairly self-explanatory, but for thoroughness's sake:
 * Title - The title of the page. This is also how the link will display in the navigation.
