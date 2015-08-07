@@ -88,17 +88,26 @@ class AuthenticationController extends Controller
      */
     public function update($id, Request $request)
     {
-        $user = User::findOrFail($id);
 
-        $data = [
-            'name'  => $request->get('name'),
-            'email' => $request->get('email'),
-        ];
+        $validator = $this->updateValidator($request->all());
+
+        if ($validator->fails()) {
+            $this->throwValidationException($request, $validator);
+        }
 
         if ($request->has('password')) {
+
+            $passwordValidator = $this->passwordValidator($request->all());
+
+            if ($passwordValidator->fails()) {
+                $this->throwValidationException($request, $passwordValidator);
+            }
+
             $data['password'] = bcrypt($request->get('password'));
         }
 
+
+        $user = User::findOrFail($id);
         $user->update($data);
 
         Flash::message('Profile successfully updated!');
@@ -130,6 +139,21 @@ class AuthenticationController extends Controller
         return Validator::make($data, [
             'name'     => 'required|max:255',
             'email'    => 'required|email|max:255|unique:users',
+            'password' => 'required|confirmed|min:6',
+        ]);
+    }
+
+    protected function updateValidator(array $data)
+    {
+         return Validator::make($data, [
+            'name'     => 'required|max:255',
+            'email'    => 'required|email|max:255',
+         ]);
+    }
+
+    protected function passwordValidator(array $data)
+    {
+        return Validator::make($data, [
             'password' => 'required|confirmed|min:6',
         ]);
     }

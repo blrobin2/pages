@@ -4,6 +4,17 @@
     <h1 class="page-header">Edit Profile</h1>
     <p>Use the form below to update your settings.</p>
 
+    @if (count($errors) > 0)
+        <div class="alert alert-danger">
+            <strong>Whoops!</strong> There were some problems with your input.<br><br>
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     <form class="form" method="post" action="{{ action('\BruceCms\Pages\AuthenticationController@update', $user->id) }}">
         <input type="hidden" name="_method" value="PUT">
         {{ csrf_field() }}
