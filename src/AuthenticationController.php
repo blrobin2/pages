@@ -2,10 +2,10 @@
 
 namespace BruceCms\Pages;
 
-use App/Http/Controllers/Controller;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use App/User;
+use App\User;
 
 class AuthenticationController extends Controller
 {
@@ -21,7 +21,7 @@ class AuthenticationController extends Controller
     {
         $users = User::all();
 
-        return view('auth.index', compact('users'))
+        return view('auth.index', compact('users'));
     }
 
     /**
@@ -43,7 +43,7 @@ class AuthenticationController extends Controller
             $this->throwValidationException($request, $validator);
         }
 
-        $this->create($request->all());
+        $this->createUser($request->all());
 
         return redirect('admins');
     }
@@ -98,7 +98,7 @@ class AuthenticationController extends Controller
      * @param  array  $data
      * @return User
      */
-    protected function create(array $data)
+    protected function createUser(array $data)
     {
         return User::create([
             'name' => $data['name'],

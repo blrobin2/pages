@@ -1,4 +1,6 @@
-<?php namespace BruceCms\Pages;
+<?php
+
+namespace BruceCms\Pages;
 
 use Illuminate\Database\Eloquent\Model;
 use Knp\Menu\MenuFactory;
