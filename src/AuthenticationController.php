@@ -17,16 +17,64 @@ class AuthenticationController extends Controller
         $this->middleware('guest', ['except' => ['getLogout']]);
     }
 
-    public function getProfile($id)
+    public function index()
+    {
+        $users = User::all();
+
+        return view('auth.index', compact('users'))
+    }
+
+    /**
+     *  Create a new Admin.
+     */
+    public function create()
+    {
+        return view('auth.create');
+    }
+
+    /**
+     *  Store the newly created admin.
+     */
+    public function store(Request $request)
+    {
+        $validator = $this->validator($request->all());
+
+        if ($validator->fails()) {
+            $this->throwValidationException($request, $validator);
+        }
+
+        $this->create($request->all());
+
+        return redirect('admins');
+    }
+
+    /**
+     * Edit an existing Admin.
+     */
+    public function edit($id)
     {
         $user = User::find($id);
 
-        return view('auth.profile', compact('user'));
+        return view('auth.edit', compact('user'));
     }
 
-    public function postProfile($id, Request $request)
+    /**
+     *  Update an existing Admin
+     */
+    public function update($id, Request $request)
     {
-        dd($request->all());
+        $user = User::find($id);
+
+        $user->update($request->all());
+
+        return redirect('admins');
+    }
+
+    public function destroy($id)
+    {
+        User::destroy($id);
+
+        return redirect('admins');
     }
 
     /**

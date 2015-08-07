@@ -1,21 +1,20 @@
 <?php
 
 /**
-* Authentication - Hidden away in Laravel 5.1
-*/
+ *  Login and Passwords
+ */
+Route::get('login', 'BruceCms\Pages\AuthenticationController@getLogin');
+Route::post('login', 'BruceCms\Pages\AuthenticationController@postLogin');
+Route::get('logout', 'BruceCms\Pages\AuthenticationController@getLogout');
+
 Route::controllers([
     'password' => 'App\Http\Controllers\Auth\PasswordController',
 ]);
 
 /**
- *  Login and Profile Manager
+ * Admin Manager
  */
-Route::get('login', 'BruceCms\Pages\AuthenticationController@getLogin');
-Route::post('login', 'BruceCms\Pages\AuthenticationController@postLogin');
-Route::get('logout', 'BruceCms\Pages\AuthenticationController@getLogout');
-Route::get('profile/{profile}/edit', 'BruceCms\Pages\AuthenticationController@getProfile');
-Route::post('profile/{profile}/edit', 'BruceCms\Pages\AuthenticationController@postProfile');
-
+Route::resource('admins', 'BruceCms\Pages\AuthenticationController');
 
 /**
  * Sitemap
