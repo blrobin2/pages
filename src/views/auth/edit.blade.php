@@ -1,7 +1,7 @@
 @extends('layouts.inner')
 
 @section('content')
-    <h1 class="page-header"><a href="{{ URL::previous() }}">&larr; Back</a> | Edit Profile</h1>
+    <h1 class="page-header">Edit Profile</h1>
     <p>Use the form below to update your settings.</p>
 
     <form class="form" method="post" action="{{ action('\BruceCms\Pages\AuthenticationController@update', $user->id) }}">

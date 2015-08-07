@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\User;
 use Illuminate\Support\Facades\Redirect;
+use Validator;
+use Flash;
 
 class AuthenticationController extends Controller
 {
@@ -18,7 +20,7 @@ class AuthenticationController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['getLogin', 'postLogin']]);
+        $this->middleware('auth', [ 'except' => [ 'getLogin', 'postLogin' ] ]);
     }
 
     /**
@@ -59,6 +61,8 @@ class AuthenticationController extends Controller
 
         $this->createUser($request->all());
 
+        Flash::message('Admin successfully created!');
+
         return redirect('admins');
     }
 
@@ -87,7 +91,7 @@ class AuthenticationController extends Controller
         $user = User::findOrFail($id);
 
         $data = [
-            'name' => $request->get('name'),
+            'name'  => $request->get('name'),
             'email' => $request->get('email'),
         ];
 
@@ -103,7 +107,9 @@ class AuthenticationController extends Controller
 
         $user->update($data);
 
-        return redirect()->back();
+        Flash::message('Profile successfully updated!');
+
+        return redirect('admins');
     }
 
     /**
@@ -122,14 +128,14 @@ class AuthenticationController extends Controller
     /**
      * Get a validator for an incoming registration request.
      *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
+     * @param  array $data
+     * @return Validator
      */
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
+            'name'     => 'required|max:255',
+            'email'    => 'required|email|max:255|unique:users',
             'password' => 'required|confirmed|min:6',
         ]);
     }
@@ -137,14 +143,14 @@ class AuthenticationController extends Controller
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array  $data
+     * @param  array $data
      * @return User
      */
     protected function createUser(array $data)
     {
         return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
+            'name'     => $data['name'],
+            'email'    => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
     }
