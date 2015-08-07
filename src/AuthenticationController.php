@@ -6,17 +6,26 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\User;
+use Illuminate\Support\Facades\Redirect;
 
 class AuthenticationController extends Controller
 {
 
     use AuthenticatesUsers;
 
+    /**
+     * Create a new instance.
+     */
     public function __construct()
     {
-        $this->middleware('guest', ['except' => ['getLogout']]);
+        $this->middleware('auth', ['except' => ['getLogin', 'postLogin']]);
     }
 
+    /**
+     * Manage admins
+     *
+     * @return Response
+     */
     public function index()
     {
         $users = User::all();
@@ -25,7 +34,9 @@ class AuthenticationController extends Controller
     }
 
     /**
-     *  Create a new Admin.
+     * Create a new Admin
+     *
+     * @return Response
      */
     public function create()
     {
@@ -33,7 +44,10 @@ class AuthenticationController extends Controller
     }
 
     /**
-     *  Store the newly created admin.
+     * Store the new Admin
+     *
+     * @param  Request $request
+     * @return Redirect
      */
     public function store(Request $request)
     {
@@ -49,7 +63,10 @@ class AuthenticationController extends Controller
     }
 
     /**
-     * Edit an existing Admin.
+     * Edit an existing Admin
+     *
+     * @param  $id
+     * @return Response
      */
     public function edit($id)
     {
@@ -59,17 +76,42 @@ class AuthenticationController extends Controller
     }
 
     /**
-     *  Update an existing Admin
+     * Update an existing Admin
+     *
+     * @param  $id
+     * @param  Request $request
+     * @return Redirect
      */
     public function update($id, Request $request)
     {
-        $user = User::find($id);
+        $user = User::findOrFail($id);
 
-        $user->update($request->all());
+        $data = [
+            'name' => $request->get('name'),
+            'email' => $request->get('email'),
+        ];
 
-        return redirect('admins');
+        if ($request->has('password')) {
+            $validator = $this->validator($request->all());
+
+            if ($validator->fails()) {
+                $this->throwValidationException($request, $validator);
+            }
+
+            $data['password'] = bcrypt($request->get('password'));
+        }
+
+        $user->update($data);
+
+        return redirect()->back();
     }
 
+    /**
+     * Destroy an Admin with the given $id
+     *
+     * @param  $id
+     * @return Redirect
+     */
     public function destroy($id)
     {
         User::destroy($id);

@@ -1,6 +1,8 @@
 # Itty, bitty CMS for Laravel
 
-This package is currently under development, working to be as cleanly compatible with Laravel 5.1 as possible. I would not recommend using it until a solid beta version is out.
+Bruce is a highly opinionated CMS with basic authentication. While we try to provide some flexibility, there are a number of choices made that may make or break your decision to use the package.
+
+Please note that this package is currently under development. I would not recommend using it until a solid beta version is out.
 
 ## Prerequisites
 
@@ -60,7 +62,7 @@ In this package, everything except the pages themselves are hidden behind the [A
 * Email: admin@example.com
 * Password: password
 
-PLEASE change these to your domains needs. To do so, go to the "Edit Profile" link in the administration navigation, or go to `profile/{id}/edit`, where "id" is the id set the in the database. If you are unsure of what that id is and you have only run the seeder, then it is likely 1. If you truly cannot check this number, I don't know what you are doing with your life, but please get it together.
+PLEASE change these to your domains needs. To do so, please read the "Edit Your Profile" section below.
 
 You'll also notice that the master `app/routes.php` can override any of the routes we have set up. If, for whatever reason, you need to change the URI, you can update it there. If you need help figuring out how to point to our internally controller, take a look at our `routes.php` in the `src/` directory.
 
@@ -90,6 +92,21 @@ To view a page, just go to the link you set for it. You can also get to it from 
 #### Sitemap
 This packages uses [a sitemap generator built for Laravel](https://github.com/RoumenDamianoff/laravel-sitemap) and generate a default one that includes all pages created using this system. If for some reason you need a more complex sitemap, you can override the route in `app/routes.php` and refer to the package's documentation. We recommend sticking to dynamic sitemaps as serving an actual .xml file can be troublesome. Regardless, the package includes that capability if you need it.
 
+#### Admin Manager
+The Admin manager is under the `admins` route. If you ran the database seeder, you should see the default admin. Note that you can only create new admins and delete them. Editing is reserved for the admin themselves. More below.
+
+#### Create a New Admin
+By clicking the "click here" to create a new admin link on the `admins` page, you can create a new admin. The fields are the defaults that Laravel uses, but for thoroughness's sake:
+* Name - The username for the admin. This can be their actual name or a handle, as it's only used as a reference.
+* E-Mail Address - The E-Mail Address for the admin. It needs to be an actual email so that they can reset their password if need be.
+* Password - The password for the admin. By default, Laravel enforces a 6-character minimum.
+* Confirm Password - The password above in the exact same format.
+
+#### Edit Your Profile
+By clicking the "Edit Your Profile" link in the admin navigation, you can edit your profile. From here you can update your information.
+
+#### Delete an Admin
+To delete an admin, click the 'Delete' button from the Admin Manager. A confirmation box will show up, letting you know this is forever. Just confirm, and the page is gone.
 
 ### Navigation Menu
 This package includes a partial for navigation output that is included by default in the main app layout. It provides a number of hooks to make CSS easier:

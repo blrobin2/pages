@@ -25,8 +25,7 @@
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
                     <td>
-                        {!! Form::open(['method'=>'DELETE','action'=>['\BruceCms\Pages\AuthenticationController
-                            Controller@destroy', $user->id], 
+                        {!! Form::open(['method'=>'DELETE','action'=>['\BruceCms\Pages\AuthenticationController@destroy', $user->id], 
                                 'class' => '+inline-block']) !!}
                         {!! Form::submit('Delete', ['class' => 'btn btn-danger', 
                                 'onclick' =>'return confirm("Are you sure? This cannot be undone.");']) !!}

@@ -52,7 +52,7 @@ class PagesController extends Controller
     /**
      * Sort the pages by the order passed through the request.
      *
-     * @param Request $request
+     * @param  Request $request
      * @return Redirect
      */
     public function sort(Request $request)
@@ -73,8 +73,8 @@ class PagesController extends Controller
     /**
      * Set the parent page for the given id.
      *
-     * @param $id
-     * @param Request $request
+     * @param  $id
+     * @param  Request $request
      * @return Redirect
      */
     public function setParent($id, Request $request)
@@ -101,7 +101,7 @@ class PagesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param PageRequest $request
+     * @param  PageRequest $request
      * @return Response
      */
     public function store(PageRequest $request)
@@ -190,7 +190,6 @@ class PagesController extends Controller
 
         // If it isn't cached, we need to generate a new version.
         if (! $sitemap->isCached()) {
-
             $pages = \DB::table('pages')->orderBy('sort')->get();
 
             foreach ($pages as $page) {
