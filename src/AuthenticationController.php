@@ -92,6 +92,7 @@ class AuthenticationController extends Controller
      */
     public function update($id, Request $request)
     {
+        $data = $request->all();
 
         $validator = $this->updateValidator($request->all());
 
