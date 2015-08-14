@@ -2,5 +2,5 @@
 
 
 @section('content')
-	@section('page-content')
+	@yield('page-content')
 @stop

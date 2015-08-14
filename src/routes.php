@@ -40,8 +40,10 @@ Route::post('pages', 'BruceCms\Pages\PagesController@store');
 
 /** Redirect empty route to home page */
 Route::get('/', function () {
-    return redirect()->action('\BruceCms\Pages\PagesController@show', ['home']);
+    return redirect()->action('\BruceCms\Pages\PagesController@home');
 });
+
+Route::get('home', 'BruceCms\Pages\PagesController@home');
 
 /** View a single page (the heart of the CMS) */
 Route::get('{pages}', 'BruceCms\Pages\PagesController@show');
