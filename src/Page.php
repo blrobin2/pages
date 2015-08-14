@@ -42,8 +42,23 @@ class Page extends Model
         $factory = new MenuFactory();
         $menu = $factory->createItem('navigation');
 
-        foreach ($this->unhidden()->orderBy('sort')->get() as $page) {
-            $menu->addChild($page->title, [ 'uri' => url($page->link) ]);
+        $pages = $this->unhidden()->orderBy('sort')->get();
+
+        // Create the top level of navigation.
+        foreach ($pages as $page) {
+            if ($page->parent_id == 0) {
+                $menu->addChild($page->title, [ 'uri' => url($page->link) ]);
+                $menu[$page->title]->setAttribute('id', $page->id);
+            }
+        }
+
+        // Create the child nodes.
+        foreach ($menu as $menuItem) {
+            foreach ($pages as $page) {
+                if ($page->parent_id == $menuItem->getAttribute('id')) {
+                    $menu[$menuItem->getName()]->addChild($page->title, ['uri' => url($page->link) ]);
+                }
+            }
         }
 
         $renderer = new ListRenderer(new Matcher());
