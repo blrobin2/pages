@@ -74,7 +74,7 @@ class AuthenticationController extends Controller
      */
     public function edit($id)
     {
-        if (\Auth::user()->id !== $id) {
+        if (\Auth::user()->id != $id) {
             return redirect('admins');
         }
 
