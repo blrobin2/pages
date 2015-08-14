@@ -13,6 +13,8 @@ class PagesServiceProvider extends ServiceProvider
     */
     public function boot()
     {
+        include __DIR__.'/routes.php';
+        
         $this->publishes([__DIR__.'/Migrations/' => 'database/migrations'], 'migrations');
         $this->publishes([__DIR__.'/requests/' => 'app/Http/Requests/'], 'request');
 
@@ -44,7 +46,6 @@ class PagesServiceProvider extends ServiceProvider
     */
     public function register()
     {
-        include __DIR__.'/routes.php';
 
         $this->app->make('BruceCms\Pages\Page');
         $this->app->make('BruceCms\Pages\PagesController');
