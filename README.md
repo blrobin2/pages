@@ -1,5 +1,7 @@
 # Itty, bitty CMS for Laravel
 
+UPDATE: I no longer work for the company for whom I was developing this project. If you'd like to pick it up and make it better, please feel free to fork and improve as needed!
+
 Bruce is a highly opinionated CMS with basic authentication. While we try to provide some flexibility, there are a number of choices made that may make or break your decision to use the package.
 
 Please note that this package is currently under development. I would not recommend using it until a solid beta version is out.
